@@ -1,1 +1,41 @@
+header {
+    background-color: #cdcdcd;
+    padding: 0x;
+    text-align: center;
+}
 
+body {
+    background-color: #000000;
+    font-family: consolas;
+    color: #cdcdcd;
+    align-items: center;
+    text-align: center;
+}
+
+h1{
+    font-size: 30px;
+    color: #cdcdcd;
+    padding-top: 20;
+}
+
+#nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    font-size: 18   px;
+    padding: 10px;
+    margin: 0;
+}
+
+#nav li {
+    margin: 0 20px;
+}
+
+#nav a {
+    color: #171717;
+}
+
+#nav li a:hover {
+    color: #b700ff;
+}
