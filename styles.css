@@ -5,7 +5,7 @@
   --muted: #666;
   --line: #1a1a1a;
   --card: #0c0c0c;
-  --max: 520px;
+  --max: 760px;
 }
 
 * {
@@ -19,14 +19,81 @@ html {
 }
 
 body {
-  background: var(--bg);
+  position: relative;
+  overflow-x: hidden;
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.07), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.04), transparent 30%),
+    var(--bg);
   color: var(--fg);
   font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
     Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+}
+
+.background-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(12px);
+  opacity: 0.9;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.32;
+  animation: drift 10s ease-in-out infinite alternate;
+}
+
+.orb-1 {
+  width: 220px;
+  height: 220px;
+  top: 8%;
+  left: 12%;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.orb-2 {
+  width: 300px;
+  height: 300px;
+  top: 18%;
+  right: 10%;
+  background: rgba(180, 180, 180, 0.2);
+  animation-delay: 1s;
+}
+
+.orb-3 {
+  width: 260px;
+  height: 260px;
+  bottom: 8%;
+  left: 18%;
+  background: rgba(230, 230, 230, 0.18);
+  animation-delay: 2.2s;
+}
+
+.orb-4 {
+  width: 180px;
+  height: 180px;
+  bottom: 12%;
+  right: 18%;
+  background: rgba(255, 255, 255, 0.14);
+  animation-delay: 3.4s;
+}
+
+@keyframes drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(18px, -24px, 0) scale(1.08);
+  }
+  100% {
+    transform: translate3d(-16px, 26px, 0) scale(0.96);
+  }
 }
 
 ::selection {
@@ -44,7 +111,9 @@ a:hover {
 }
 
 .page {
-  width: min(var(--max), calc(100% - 48px));
+  position: relative;
+  z-index: 1;
+  width: min(var(--max), calc(100% - 64px));
   margin: 0 auto;
   padding: 0 0 120px;
 }
@@ -59,8 +128,13 @@ a:hover {
 .mark {
   color: #fafafa;
   display: block;
-  width: 40px;
-  height: 40px;
+  width: 52px;
+  height: 52px;
+  transition: opacity 0.2s ease;
+}
+
+.mark:hover {
+  opacity: 0.8;
 }
 
 .mark svg {
@@ -74,6 +148,7 @@ a:hover {
   gap: 20px;
   color: var(--muted);
   margin-bottom: 56px;
+  font-size: 1.1rem;
 }
 
 .list {
@@ -81,7 +156,7 @@ a:hover {
 }
 
 .section-label {
-  font-size: 14px;
+  font-size: 0.95rem;
   font-weight: 600;
   margin-bottom: 20px;
 }
@@ -89,22 +164,24 @@ a:hover {
 .row {
   display: flex;
   justify-content: space-between;
-  gap: 24px;
-  padding: 16px 0;
+  gap: 28px;
+  padding: 18px 0;
   border-bottom: 1px solid var(--line);
 }
 
 .row-copy h2,
 .row-copy h3 {
-  font-size: 14px;
+  font-size: 1.05rem;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 1.5;
 }
 
 .row-copy p,
 .meta,
 .muted {
   color: var(--muted);
+  font-size: 0.97rem;
+  line-height: 1.6;
 }
 
 .meta {
